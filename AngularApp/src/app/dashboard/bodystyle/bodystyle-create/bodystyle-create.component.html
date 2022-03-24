@@ -1,0 +1,27 @@
+<form class="text-center" [formGroup]="bodyStyleForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <!-- First name -->
+        <label for="bodyStyleName">Nume:</label>
+        <input type="text" formControlName="bodyStyleName" id="bodyStyleName" class="form-control"
+        placeholder="Name">
+        <div *ngIf="checkInput(f.bodyStyleName)">
+            <small class="text-danger" *ngIf="f.bodyStyleName.errors.required">Numele este obligatoriu</small>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <!-- Last name -->
+        <label for="bodyStyleDescription">Descriere:</label>
+        <input type="text" formControlName="bodyStyleDescription" id="bodyStyleDescription" class="form-control"
+            placeholder="Description">
+        <div *ngIf="checkInput(f.bodyStyleName)">
+            <small class="text-danger" *ngIf="f.bodyStyleName.errors.required">Descrierea este obligatorie</small>
+        </div>
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="bodyStyleService.selectedBodyStyle != null">Actualizeaza</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="bodyStyleService.selectedBodyStyle == null">Creaaza</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms(true)">Sterge</button>
+
+</form>

@@ -1,0 +1,89 @@
+<form class="text-center" [formGroup]="filterForm" (ngSubmit)="onSubmit()" *ngIf="initDone">
+
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="bsSelect">Caroserie:</label>
+        <select class="form-control"  formControlName="bsSelect" id="bsSelect" (change)="bsChanged($event.target.value)">
+            <option selected disabled>Alege o caroserie</option>
+            <option *ngFor="let p of bsList" value="{{p.bs_id}}">{{p.name}}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="brandSelect">Brand:</label>
+            <select class="form-control"  formControlName="brandSelect" id="brandSelect" (change)="brandChanged($event.target.value)">
+                <option selected disabled>Alege un brand</option>
+                <option *ngFor="let p of brandsList" value="{{p.brand_id}}">{{p.name}}</option>
+            </select>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="modelSelect">Model:</label>
+        <select class="form-control"  formControlName="modelSelect" id="modelSelect" (change)="modelChanged($event.target.value)">
+            <option value="-1" selected disabled>Alege un model</option>
+            <option *ngFor="let p of modelListToShow" value="{{p.model_id}}">{{p.name + ' ' + p.generation}}</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label for="gearboxType">Cutie viteze:</label>
+        <select class="form-control"  formControlName="gearboxType" id="gearboxType" (change)="gearboxTypeChanged($event.target.value)">
+            <option selected disabled>Alege un tip</option>
+            <option value="MANUALA">Manuala</option>
+            <option value="AUTOMATA">Automata</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="horsePowerMin">Putere de la:</label>
+        <input type="number" formControlName="horsePowerMin" id="horsePowerMin" class="form-control"
+        placeholder="143">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="horsePowerMax">Putere pana la:</label>
+        <input type="number" formControlName="horsePowerMax" id="horsePowerMax" class="form-control"
+        placeholder="143">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="yearMin">An de la :</label>
+        <input type="number" formControlName="yearMin" id="yearMin" class="form-control"
+        placeholder="2017">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="yearMax">An pana la:</label>
+        <input type="number" formControlName="yearMax" id="yearMax" class="form-control"
+        placeholder="2020">
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="kmMin">Kilometri de la:</label>
+        <input type="number" formControlName="kmMin" id="kmMin" class="form-control"
+        placeholder="10000">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="kmMax">Kilometri pana la:</label>
+        <input type="number" formControlName="kmMax" id="kmMax" class="form-control"
+        placeholder="100000">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="priceMin">Pret de la:</label>
+        <input type="number" formControlName="priceMin" id="priceMin" class="form-control"
+        placeholder="5000">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="priceMax">Pret pana la:</label>
+        <input type="number" formControlName="priceMax" id="priceMax" class="form-control"
+        placeholder="10000">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">Cauta</button>
+    </div>
+    <div class="col">
+        <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms()">Sterge</button>
+    </div>
+</div>
+</form>

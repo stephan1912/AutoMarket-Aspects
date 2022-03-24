@@ -1,0 +1,39 @@
+
+
+<div class="card" style="width: 100%; cursor: pointer">
+    <div class="row g-0">
+      <div class="col-md-2">
+        <img
+          [src]="appSettings.baseApiUrl + 'advert/image/' + Picture"
+          alt="{{Title}}" class=" img-fluid img-thumbnail" style="height: 200px;"
+        />
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title text-info">{{Title}}</h5>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-1">
+                            {{Year}}
+                        </div>
+                        <div class="col-md-2">
+                            {{Km}} km
+                        </div>
+                        <div class="col-md-2">
+                            {{EngineCap}} cmc
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-right">
+                    <h3 class="text-danger">{{Price}} Eur</h3>
+                    <button mdbBtn color="danger" block="true" size="sm" type="button" *ngIf="ShowDelete" (click)="deleteAdvert($event)"><mdb-icon fas icon="trash-alt"></mdb-icon> Delete</button>
+                </div>
+            </div>
+          <p class="card-text">
+            <small class="text-muted"></small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

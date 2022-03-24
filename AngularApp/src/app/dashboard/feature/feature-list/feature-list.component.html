@@ -1,0 +1,38 @@
+<div *ngIf="featureService.featureList && featureService.featureList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterByFeatureName" #featureNameFilter class="form-control"
+            placeholder="Filter by Feature Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="featureNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nume</th>
+          <th>Modifica</th>
+          <th>Sterge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let feature of featureService.featureList; let i = index">
+          <ng-container *ngIf="featureNameFilter.value == null || feature.name.toLowerCase().includes(featureNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{feature.name}}</td>
+            <td>
+              <button mdbBtn color="info" block="true" size="sm" type="button" (click)="setSelectedFeature(feature)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteFeature(feature)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

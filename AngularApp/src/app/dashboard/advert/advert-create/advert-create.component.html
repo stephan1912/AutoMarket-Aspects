@@ -1,0 +1,260 @@
+<form class="text-center" [formGroup]="advertForm" (ngSubmit)="onSubmit()" *ngIf="initDone">
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="title">Titlu:</label>
+            <input type="text" formControlName="title" id="title" class="form-control"
+            placeholder="Title">
+            
+            <div *ngIf="checkInput(f.title)">
+                <small class="text-danger" *ngIf="f.title.errors.required">Titlul este obligatoriu</small>
+            </div>
+    
+        </div>
+        <div class="form-group col-md-4">
+            <label for="vin">VIN:</label>
+            <input type="text" formControlName="vin" id="vin" class="form-control"
+            placeholder="VIN">
+            <div *ngIf="checkInput(f.vin)">
+                <small class="text-danger" *ngIf="f.vin.errors.required">VIN-ul este obligatoriu</small>
+            </div>
+    
+        </div>
+        
+        <div class="form-group col-md-4">
+            <label for="countrySelect">Tara de origine:</label>
+            <select class="form-control"  formControlName="countrySelect" id="countrySelect" (change)="countryChanged($event.target.value)">
+                <option selected disabled>Alege o tara</option>
+                <option *ngFor="let p of countryList" value="{{p.country_id}}">{{p.name}}</option>
+            </select>
+            <div *ngIf="f.countrySelect.dirty || f.countrySelect.touched">
+                <small class="text-danger" *ngIf="selectedCountry == -1">Tara de origine este obligatorie</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col">
+            <label for="description">Descriere:</label>
+            <textarea class="form-control rounded-0" id="description" rows="3" placeholder="Description"
+                formControlName="description" maxlength="1000" minlength="100"></textarea>
+    
+                <div *ngIf="checkInput(f.description)">
+                    <small class="text-danger" *ngIf="f.description.errors.required">Descrierea este obligatorie</small>
+                    <small class="text-danger" *ngIf="f.description.errors.minlength">Descrierea trebuie sa aiba cel putin 100 de caractere</small>
+                    <small class="text-danger" *ngIf="f.description.errors.maxlength">Descrierea trebuie sa aiba cel mult 1000 de caractere</small>
+                </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="kilometers">Kilometri:</label>
+            <input type="number" formControlName="kilometers" id="kilometers" class="form-control"
+            placeholder="1000">
+            <div *ngIf="checkInput(f.kilometers)">
+                <small class="text-danger" *ngIf="f.kilometers.errors.required">Specificarea kilometrilor este obligatorie</small>
+                <small class="text-danger" *ngIf="f.kilometers.errors.min">Valoarea kilometrilor nu poate fi mai mica decat 0</small>
+            </div>
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="year">An:</label>
+            <input type="number" formControlName="year" id="year" class="form-control"
+            placeholder="2021">
+            <div *ngIf="checkInput(f.year)">
+                <small class="text-danger" *ngIf="f.year.errors.required">Anul este obligatoriu</small>
+                <small class="text-danger" *ngIf="f.year.errors.min">Anul trebuie sa fie cel putin 1900</small>
+                <small class="text-danger" *ngIf="f.year.errors.max">Anul trebuie sa fie cel mult 2021</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="registered">Inmatriculata?</label>
+            <input type="checkbox" formControlName="registered" id="registered" class="form-control">
+        </div>
+    
+    
+        <div class="form-group col-md-6">
+            <label for="serviceDocs">Carte service?</label>
+            <input type="checkbox" formControlName="serviceDocs" id="serviceDocs" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="brandSelect">Brand:</label>
+            <select class="form-control"  formControlName="brandSelect" id="brandSelect" (change)="brandChanged($event.target.value)">
+                <option selected disabled>Alege un brand</option>
+                <option *ngFor="let p of brandsList" value="{{p.brand_id}}">{{p.name}}</option>
+            </select>
+            <div *ngIf="f.brandSelect.dirty || f.brandSelect.touched">
+                <small class="text-danger" *ngIf="selectedBrand == -1">Brandul este obligatoriu</small>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="modelSelect">Model:</label>
+            <select class="form-control"  formControlName="modelSelect" id="modelSelect" (change)="modelChanged($event.target.value)">
+                <option value="-1" selected disabled>Alege un model</option>
+                <option *ngFor="let p of modelListToShow" value="{{p.model_id}}">{{p.name + ' ' + p.generation}}</option>
+            </select>
+            <div *ngIf="f.modelSelect.dirty || f.modelSelect.touched">
+                <small class="text-danger" *ngIf="selectedModel == -1">Modelul este obligatoriu</small>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="bsSelect">Caroserie:</label>
+            <select class="form-control"  formControlName="bsSelect" id="bsSelect" (change)="bsChanged($event.target.value)">
+                <option selected disabled>Alege o caroserie</option>
+                <option *ngFor="let p of bsList" value="{{p.bs_id}}">{{p.name}}</option>
+            </select>
+            <div *ngIf="f.bsSelect.dirty || f.bsSelect.touched">
+                <small class="text-danger" *ngIf="selectedBs == -1">Caroseria este obligatorie</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="gearboxType">Cutie viteze:</label>
+            <select class="form-control"  formControlName="gearboxType" id="gearboxType" (change)="gearboxTypeChanged($event.target.value)">
+                <option selected disabled>Alege un tip</option>
+                <option value="MANUALA">Manuala</option>
+                <option value="AUTOMATA">Automata</option>
+            </select>
+            <div *ngIf="f.gearboxType.dirty || f.gearboxType.touched">
+                <small class="text-danger" *ngIf="selectedGearbox == 'EMPTY'">Cutia de viteze este obligatorie</small>
+            </div>
+        </div>
+    
+        <div class="form-group col-md-4">
+            <label for="drivetrain">Tractiune:</label>
+            <select class="form-control"  formControlName="drivetrain" id="drivetrain" (change)="drivetrainChanged($event.target.value)">
+                <option selected disabled>Alege un tip</option>
+                <option value="FATA">Fata</option>
+                <option value="SPATE">Spate</option>
+                <option value="INTEGRALA">Integrala</option>
+            </select>
+            <div *ngIf="f.drivetrain.dirty || f.drivetrain.touched">
+                <small class="text-danger" *ngIf="selectedDrivetrain == 'EMPTY'">Tractiunea este obligatorie</small>
+            </div>
+        </div>
+    
+        <div class="form-group col-md-4">
+            <label for="fuel">Combustibil:</label>
+            <select class="form-control"  formControlName="fuel" id="fuel" (change)="fuelChanged($event.target.value)">
+                <option selected disabled>Alege un tip</option>
+                <option value="BENZINA">Benzina</option>
+                <option value="MOTORINA">Motorina</option>
+                <option value="HIBRID">Hibrid</option>
+                <option value="ELECTRIC">Electric</option>
+                <option value="HIDROGEN">Hidrogen</option>
+            </select>
+            <div *ngIf="f.fuel.dirty || f.fuel.touched">
+                <small class="text-danger" *ngIf="selectedFuel == 'EMPTY'">Tipul de combustibil este obligatoriu</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="horsePower">Putere:</label>
+            <input type="number" formControlName="horsePower" id="horsePower" class="form-control"
+            placeholder="143">
+            <div *ngIf="checkInput(f.horsePower)">
+                <small class="text-danger" *ngIf="f.horsePower.errors.required">Puterea este obligatorie</small>
+                <small class="text-danger" *ngIf="f.horsePower.errors.min">Puterea trebuie sa fie pozitiva</small>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="engineCap">Capacitate motor:</label>
+            <input type="number" formControlName="engineCap" id="engineCap" class="form-control"
+            placeholder="1968">
+            <div *ngIf="checkInput(f.engineCap)">
+                <small class="text-danger" *ngIf="f.engineCap.errors.required">Capacitatea este obligatorie</small>
+                <small class="text-danger" *ngIf="f.engineCap.errors.min">Capacitatea trebuie sa fie pozitiva</small>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="price">Pret (Euro):</label>
+            <input type="number" formControlName="price" id="price" class="form-control"
+            placeholder="9700">
+            <div *ngIf="checkInput(f.price)">
+                <small class="text-danger" *ngIf="f.price.errors.required">Pretul este obligatoriu</small>
+                <small class="text-danger" *ngIf="f.price.errors.min">Pretul trebuie sa fie pozitiv</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="feature">Adauga optiuni:</label>
+            <select class="form-control"  formControlName="feature" id="feature" (change)="featureChanged($event.target.value)">
+                <option selected disabled value="-1">Alege o optiune</option>
+                <option *ngFor="let p of featureList" value="{{p.id}}">{{p.name}}</option>
+            </select>
+            <div *ngIf="f.feature.dirty || f.feature.touched">
+                <small class="text-danger" *ngIf="!addedFeatures || addedFeatures.length == 0">Este necesara cel putin o dotare</small>
+            </div>
+        </div>
+        <div class="form-group col-md-8">
+            <div style="max-height: 300px; overflow-y: scroll;">
+                <table>
+                    <tr>
+                        <th>Optiune</th>
+                        <th>Sterge</th>
+                    </tr>
+                    <tr class="row" *ngFor="let f of addedFeatures; let i = index">
+                        <td class="col-md-10">
+                            {{f.name}}
+                        </td>
+                        <td class="col-md-2">
+                            <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteFeature(f.id)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+               
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="this.advertService.SavedAdvert == null">
+        <div class="form-group col-md-3">
+            <label for="photos">Imagini:</label>
+            <span (click)="showFileBox()" class="btn btn-default btn-file"> Adauga imagini
+                
+            <input id="carPicInput" style="display: none;"  multiple #imageInput type="file" accept="image/*" (change)="processFile(imageInput)"/>
+            </span>
+            <div *ngIf="nopicError">
+                <small class="text-danger">Este necesara cel putin o imagine</small>
+            </div>
+        </div>
+        <div class="form-group col-md-9">
+            <ng-container *ngIf="addedImages">
+                <div style="max-height: 300px; overflow-y: scroll;">
+                <table>
+                    <tr>
+                        <th>Nume fisier</th>
+                        <th>Sterge</th>
+                    </tr>
+                    <tr class="row" *ngFor="let file of pictureFiles; let i = index">
+                        <td class="col-md-10">
+                            {{file.file.name}}
+                        </td>
+                        <td class="col-md-2">
+                            <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteFile(i)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="advertService.SavedAdvert != null">Actualizeaza</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="advertService.SavedAdvert == null">Creeaza</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms()">Sterge</button>
+
+</form>

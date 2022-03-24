@@ -1,0 +1,168 @@
+<div class="conent" style="margin: 0px 150px">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-5 text-center">
+            <mdb-carousel [animation]="'slide'" >
+                <mdb-carousel-item *ngFor="let pic of advertService.selectedAdvert.pictures">
+                    <img class="d-block w-100" [src]="appSettings.baseApiUrl + 'advert/image/' + pic" alt="advertService.selectedAdvert.title">
+                </mdb-carousel-item>
+            </mdb-carousel>
+        </div>
+        <div class="col-md-7">
+            <div class="text-center">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <h3>{{advertService.selectedAdvert.title}}
+                                <button [routerLink]="['/home']" mdbBtn color="primary" size="sm" class="my-0 p float-right">
+                                    Inapoi
+                                </button></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-inline">
+                            <li>{{advertService.selectedAdvert.year}}</li>
+                            <li>{{advertService.selectedAdvert.km}} km</li>
+                            <li>{{advertService.selectedAdvert.fuel}}</li>
+                            <li>{{advertService.selectedAdvert.bodyStyleDTO.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-danger">{{advertService.selectedAdvert.price}} Euro</h3>
+                    </div>
+                </div>
+    
+                <div class="row">
+    
+                    <div class="col-md-6">
+                        <table mdbTable striped="true">
+                            <tbody>
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Brand</label></td>
+                                <td>{{advertService.selectedAdvert.model.brandName}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Model</label></td>
+                                <td>{{advertService.selectedAdvert.model.name}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Generatie</label></td>
+                                <td>{{advertService.selectedAdvert.model.generation}}</td>
+                              </tr>
+    
+                              <tr mdbTableCol>
+                                <td><label class="text-info">VIN</label></td>
+                                <td>{{advertService.selectedAdvert.vin}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">An lansare</label></td>
+                                <td>{{advertService.selectedAdvert.model.launchYear}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">An final</label></td>
+                                <td>{{advertService.selectedAdvert.model.finalYear}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Cutie de viteze</label></td>
+                                <td>{{advertService.selectedAdvert.gearboxType}}</td>
+                              </tr>
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Carte service</label></td>
+                                <td>{{advertService.selectedAdvert.serviceDocs ? 'Da' : 'Nu'}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <table mdbTable striped="true">
+                            <tbody>
+                              <tr mdbTableCol>
+                                <td><label class="text-info">An</label></td>
+                                <td>{{advertService.selectedAdvert.year}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Kilometeri</label></td>
+                                <td>{{advertService.selectedAdvert.km}} km</td>
+                              </tr>
+    
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Tara de origine</label></td>
+                                <td>{{advertService.selectedAdvert.countryDTO.name}}</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Putere</label></td>
+                                <td>{{advertService.selectedAdvert.horsePower}} hp</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Capacitate motor</label></td>
+                                <td>{{advertService.selectedAdvert.engineCap}} cmc</td>
+                              </tr>
+                              
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Tractiune</label></td>
+                                <td>{{advertService.selectedAdvert.drivetrain}}</td>
+                              </tr>
+    
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Combustibil</label></td>
+                                <td>{{advertService.selectedAdvert.fuel}}</td>
+                              </tr>
+                              <tr mdbTableCol>
+                                <td><label class="text-info">Inregistrat</label></td>
+                                <td>{{advertService.selectedAdvert.registered ? 'Da' : 'Nu'}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col"><h3 class="text-info">Dotari:</h3></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                  <div style="max-height: 300px; overflow-y: scroll;">
+                    <table mdbTable bordered="true">
+                        <tbody>
+                          <tr mdbTableCol *ngFor="let _ of advertService.selectedAdvert.features; let i = index">
+                            <td><label>&bull;   {{advertService.selectedAdvert.features[i].name}}</label></td>
+                            <td *ngIf="i < advertService.selectedAdvert.features.length - 1"><label>&bull;   {{advertService.selectedAdvert.features[i+1].name}}</label></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col">
+                    <div class="col"><h3 class="text-info">Descriere:</h3></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">{{advertService.selectedAdvert.description}}</div>
+            </div>
+        </div>
+    </div>
+    
+</div>

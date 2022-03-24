@@ -1,0 +1,2 @@
+2022-01-08 21:29:31.031  WARN 11252 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-01-08 21:33:25.061 ERROR 11252 --- [http-nio-9001-exec-2] c.a.a.controller.UserController          : ErrorMessage: Credentialele folosite nu sunt corecte.	 ErrorCode: 4001	 HttpCode: 401

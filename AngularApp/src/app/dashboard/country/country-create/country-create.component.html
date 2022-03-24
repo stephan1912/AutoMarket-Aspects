@@ -1,0 +1,18 @@
+<form class="text-center" [formGroup]="countryForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <!-- First name -->
+        <label for="countryName">Nume tara:</label>
+        <input type="text" formControlName="countryName" id="countryName" class="form-control"
+            placeholder="Name">
+        
+        <div *ngIf="checkInput(f.countryName)">
+            <small class="text-danger" *ngIf="f.countryName.errors.required">Numele este obligatoriu</small>
+        </div>
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="countryService.selectedCountry != null">Actualizeaza</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="countryService.selectedCountry == null">Creaaza</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms(true)">Sterge</button>
+
+</form>

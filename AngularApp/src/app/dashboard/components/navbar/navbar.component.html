@@ -1,0 +1,25 @@
+<mdb-card class="mb-4 wow fadeIn">
+
+    <!--Card content-->
+    <mdb-card-body class="d-sm-flex justify-content-between">
+
+        <h4 class="mb-sm-0 pt-3">
+            <span>{{Route}}</span>
+        </h4>
+        <div class="d-flex md-form justify-content-center my-0" *ngIf="ShowNewAdvert">
+            <!-- Default input -->
+            <button *ngIf="userService.IsUserAdmin() == false" [routerLink]="['/dashboard/advert']" mdbBtn color="primary" size="sm" class="my-0 p">
+                Anunt nou
+            </button>
+
+        </div>
+        <div class="d-flex md-form justify-content-center my-0" *ngIf="BackButtonValue">
+            <!-- BackButton -->
+            <button [routerLink]="[BackButtonValue]" mdbBtn color="primary" size="sm" class="my-0 p">
+                Inapoi
+            </button>
+
+        </div>
+    </mdb-card-body>
+
+</mdb-card>

@@ -1,0 +1,115 @@
+<app-navbar [Route]="'Edit your profile'" [BackButtonValue]="'/dashboard/main'"></app-navbar>
+
+<div *ngIf="currentUser">
+    <ul class="stepper stepper-vertical">
+        <li class="completed">
+            <a>
+                <span class="circle"></span>
+                <span class="label">Informatiile contului</span>
+            </a>
+            <div class="step-content grey lighten-3" style="width: 100%;">
+                <form class="text-center" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <!-- First name -->
+                        <label for="userFirstName">Prenume:</label>
+                        <input type="text" formControlName="userFirstName" id="userFirstName" class="form-control"
+                            placeholder="First name">
+                            <div *ngIf="checkInput(f.userFirstName)">
+                                <small class="text-danger" *ngIf="f.userFirstName.errors.required">Prenumele este obligatoriu</small>
+                            </div>
+
+                    </div>
+                    <div class="form-group">
+                        <!-- Last name -->
+                        <label for="userLastName">Nume:</label>
+                        <input type="text" formControlName="userLastName" id="userLastName" class="form-control"
+                            placeholder="Last name">
+                            <div *ngIf="checkInput(f.userLastName)">
+                                <small class="text-danger" *ngIf="f.userLastName.errors.required">Numele este obligatoriu</small>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Nume utilizator:</label>
+                        <input type="text" formControlName="username" id="username" class="form-control mb-4"
+                            placeholder="Username">
+                            <div *ngIf="checkInput(f.username)">
+                                <small class="text-danger" *ngIf="f.username.errors.required">Numele utilizator este obligatoriu</small>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="text" formControlName="email" id="email" class="form-control mb-4"
+                            placeholder="E-mail">
+                            <div *ngIf="checkInput(f.email)">
+                                <small class="text-danger" *ngIf="f.email.errors.required">E-mail este obligatoriu</small>
+                                <small class="text-danger" *ngIf="f.email.errors.email">E-mail nu este valid</small>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate">Data nastere:</label>
+                        <input type="date" formControlName="birthDate" id="birthDate"
+                            class="form-control mb-4">
+                            <div *ngIf="checkInput(f.birthDate)">
+                                <small class="text-danger" *ngIf="f.birthDate.errors.required">Data nastere este obligatoriu</small>
+                            </div>
+                    </div>
+
+
+                    <div *ngIf="atLeastOneEdit">
+                        <small class="text-danger">Trebuie sa editati cel putin un camp</small>
+                    </div>
+                    <div [innerHTML]="otherErrorsDiv">
+                    </div>
+
+                    <button mdbBtn color="info" block="true" class="my-4" type="submit">Actualizare</button>
+
+                </form>
+            </div>
+        </li>
+
+        <li class="completed">
+            <a>
+                <span class="circle"></span>
+                <span class="label">Securitatea contului</span>
+            </a>
+            <div class="step-content grey lighten-3" *ngIf="newPasswordForm" style="width: 100%;">
+                <div class="row">
+                    <div class="col">
+                        <form class="text-center" [formGroup]="newPasswordForm" (ngSubmit)="changePassword()">
+
+                            <div class="form-group">
+                                <label for="currentPassword">Parola curenta:</label>
+                                <input type="password" formControlName="currentPassword" id="currentPassword" class="form-control"
+                                    placeholder="">
+                                <div *ngIf="checkInput(pf.currentPassword)">
+                                    <small class="text-danger" *ngIf="pf.currentPassword.errors.required">Parola curenta este obligatorie</small>
+                                    </div>
+        
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Parola noua:</label>
+                                <input type="password" formControlName="newPassword" id="newPassword" class="form-control">
+                                <div *ngIf="checkInput(pf.newPassword)">
+                                    <small class="text-danger" *ngIf="pf.newPassword.errors.required">Parola noua este obligatorie</small>
+                                    <small class="text-danger" *ngIf="pf.newPassword.errors.minlength">Parola noua trebuie sa aiba cel putin 6 caractere</small>
+                                    <small class="text-danger" *ngIf="pf.newPassword.errors.maxlength">Parola noua trebuie sa aiba cel mult 12 caractere</small>
+                                  </div>
+
+                                  <div *ngIf="pf.newPassword.value == pf.currentPassword.value && (pf.newPassword.dirty || pf.newPassword.touched)">
+                                    <small class="text-danger">Noua parola trebuie sa fie diferita</small>
+                                  </div>
+                            </div>
+                            <div [innerHTML]="otherErrorsDivPassword">
+                            </div>
+                            <button mdbBtn color="info" block="true" class="my-4" type="submit">Actualizare</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
