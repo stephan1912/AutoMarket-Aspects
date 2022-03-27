@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -30,7 +28,12 @@ import java.util.Objects;
 @CustomEntityClassAnnotation(notPresentError = "Utilizatorul nu exista!")
 public class User {
 
-    @Id
+    public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -100,11 +103,123 @@ public class User {
         );
     }
 
+	public int getId() {
+		return id;
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
+	public User(int id, String lastName, String firstName, String email, String password, String username,
+			boolean active, String roles, Date birthdate, List<Advert> advertList, List<Comment> commentList) {
+		super();
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.password = password;
+		this.username = username;
+		this.active = active;
+		this.roles = roles;
+		this.birthdate = birthdate;
+		this.advertList = advertList;
+		this.commentList = commentList;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
+				+ ", password=" + password + ", username=" + username + ", active=" + active + ", roles=" + roles
+				+ ", birthdate=" + birthdate + ", advertList=" + advertList + ", commentList=" + commentList
+				+ ", hashCode()=" + hashCode() + ", toDto()=" + toDto() + ", getId()=" + getId() + ", getLastName()="
+				+ getLastName() + ", getFirstName()=" + getFirstName() + ", getEmail()=" + getEmail()
+				+ ", getPassword()=" + getPassword() + ", getUsername()=" + getUsername() + ", isActive()=" + isActive()
+				+ ", getRoles()=" + getRoles() + ", getBirthdate()=" + getBirthdate() + ", getAdvertList()="
+				+ getAdvertList() + ", getCommentList()=" + getCommentList() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+
+    
 }

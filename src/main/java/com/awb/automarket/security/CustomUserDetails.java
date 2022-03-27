@@ -10,8 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class CustomUserDetails implements UserDetails {
 
     private Integer id;
@@ -35,12 +34,55 @@ public class CustomUserDetails implements UserDetails {
         return authorities;
     }
 
-    @Override
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setAuthorities(Set<SimpleGrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
+
+	@Override
     public String getPassword() {
         return password;
     }
 
-    @Override
+    public CustomUserDetails(Integer id, String userName, String email, String password, boolean active,
+			Set<SimpleGrantedAuthority> authorities) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		this.active = active;
+		this.authorities = authorities;
+	}
+
+	@Override
     public String getUsername() {
         return userName;
     }

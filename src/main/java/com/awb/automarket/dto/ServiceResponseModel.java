@@ -9,14 +9,18 @@ import org.springframework.http.ResponseEntity;
 
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ServiceResponseModel<T> {
 
     public T responseData;
     public ErrorResponse errorResponse;
+    
 
-    public static ServiceResponseModel ok(Object object) {
+    public ServiceResponseModel(T responseData, ErrorResponse errorResponse) {
+		super();
+		this.responseData = responseData;
+		this.errorResponse = errorResponse;
+	}
+	public static ServiceResponseModel ok(Object object) {
         return  new ServiceResponseModel(object, null);
     };
     public static ServiceResponseModel bad(ErrorResponse err) {
@@ -81,5 +85,19 @@ public class ServiceResponseModel<T> {
         }
         return ResponseEntity.ok(responseData);
     }
+	public T getResponseData() {
+		return responseData;
+	}
+	public void setResponseData(T responseData) {
+		this.responseData = responseData;
+	}
+	public ErrorResponse getErrorResponse() {
+		return errorResponse;
+	}
+	public void setErrorResponse(ErrorResponse errorResponse) {
+		this.errorResponse = errorResponse;
+	}
+    
+    
 
 }

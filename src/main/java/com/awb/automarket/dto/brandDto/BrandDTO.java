@@ -9,9 +9,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.*;
 
 @Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 @CustomDtoClassAnnotation(mappsEntity = Brand.class)
 public class BrandDTO {
     public int brand_id;
@@ -25,10 +22,49 @@ public class BrandDTO {
         return b;
     }
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public int getBrand_id() {
+		return brand_id;
+	}
+
+	public void setBrand_id(int brand_id) {
+		this.brand_id = brand_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	@Override
+	public String toString() {
+		return "BrandDTO [brand_id=" + brand_id + ", name=" + name + ", code=" + code + ", toBrand()=" + toBrand()
+				+ ", getBrand_id()=" + getBrand_id() + ", getName()=" + getName() + ", getCode()=" + getCode()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+
+	public BrandDTO(int brand_id, String name, String code) {
+		super();
+		this.brand_id = brand_id;
+		this.name = name;
+		this.code = code;
+	}
+
+	public BrandDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+    
 }

@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @CustomDtoClassAnnotation(mappsEntity = Model.class)
 public class CreateModelRequest {
@@ -31,4 +29,53 @@ public class CreateModelRequest {
         m.setId(model_id);
         return m;
     }
+
+	public int getBrand_id() {
+		return brand_id;
+	}
+
+	public void setBrand_id(int brand_id) {
+		this.brand_id = brand_id;
+	}
+
+	public int getModel_id() {
+		return model_id;
+	}
+
+	public void setModel_id(int model_id) {
+		this.model_id = model_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGeneration() {
+		return generation;
+	}
+
+	public void setGeneration(String generation) {
+		this.generation = generation;
+	}
+
+	public int getLaunchYear() {
+		return launchYear;
+	}
+
+	public void setLaunchYear(int launchYear) {
+		this.launchYear = launchYear;
+	}
+
+	public int getFinalYear() {
+		return finalYear;
+	}
+
+	public void setFinalYear(int finalYear) {
+		this.finalYear = finalYear;
+	}
+    
 }

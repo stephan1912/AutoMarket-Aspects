@@ -11,8 +11,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
 @Entity
 @Table(name = "Comment")
 @CustomEntityClassAnnotation(notPresentError = "Comentariul nu exista!")
@@ -61,11 +59,43 @@ public class Comment {
         return Objects.hash(id);
     }
 
+	public int getId() {
+		return id;
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", comment=" + comment + ", user=" + user + ", advert=" + advert
+				+ ", getComment()=" + getComment() + ", getAdvert()=" + getAdvert() + ", hashCode()=" + hashCode()
+				+ ", getId()=" + getId() + ", getUser()=" + getUser() + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	public Comment(int id, String comment, User user, Advert advert) {
+		super();
+		this.id = id;
+		this.comment = comment;
+		this.user = user;
+		this.advert = advert;
+	}
+
+	public Comment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+   
 }

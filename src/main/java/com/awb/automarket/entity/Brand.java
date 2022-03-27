@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Brand")
 @CustomEntityClassAnnotation(notPresentError = "Brandul nu exista!")
@@ -90,11 +88,34 @@ public class Brand {
         return Objects.hash(id);
     }
 
+	public int getId() {
+		return id;
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setModelList(List<Model> modelList) {
+		this.modelList = modelList;
+	}
+
+	public Brand(int id, String name, String code, List<Model> modelList) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.code = code;
+		this.modelList = modelList;
+	}
+
+	@Override
+	public String toString() {
+		return "Brand [id=" + id + ", name=" + name + ", code=" + code + ", modelList=" + modelList
+				+ ", getModelList()=" + getModelList() + ", getName()=" + getName() + ", getCode()=" + getCode()
+				+ ", hashCode()=" + hashCode() + ", getId()=" + getId() + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
+	}
+    
+
+    
 }

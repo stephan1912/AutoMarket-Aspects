@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @CustomDtoClassAnnotation(mappsEntity = Country.class)
 public class CountryDTO {
@@ -28,11 +26,39 @@ public class CountryDTO {
         return new Country(country_id ,name, null);
     }
 
+	public int getCountry_id() {
+		return country_id;
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public void setCountry_id(int country_id) {
+		this.country_id = country_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "CountryDTO [country_id=" + country_id + ", name=" + name + ", toCountry()=" + toCountry()
+				+ ", getCountry_id()=" + getCountry_id() + ", getName()=" + getName() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	public CountryDTO(int country_id, String name) {
+		super();
+		this.country_id = country_id;
+		this.name = name;
+	}
+
+	public CountryDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
 }

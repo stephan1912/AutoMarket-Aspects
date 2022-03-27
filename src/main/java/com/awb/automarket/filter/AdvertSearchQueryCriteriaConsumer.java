@@ -9,8 +9,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.function.Consumer;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
 public class AdvertSearchQueryCriteriaConsumer implements Consumer<SearchCriteria> {
     private Predicate predicate;
@@ -35,4 +34,36 @@ public class AdvertSearchQueryCriteriaConsumer implements Consumer<SearchCriteri
             }
         }
     }
+
+	public Predicate getPredicate() {
+		return predicate;
+	}
+
+	public void setPredicate(Predicate predicate) {
+		this.predicate = predicate;
+	}
+
+	public CriteriaBuilder getBuilder() {
+		return builder;
+	}
+
+	public void setBuilder(CriteriaBuilder builder) {
+		this.builder = builder;
+	}
+
+	public Root getR() {
+		return r;
+	}
+
+	public void setR(Root r) {
+		this.r = r;
+	}
+
+	public AdvertSearchQueryCriteriaConsumer(Predicate predicate, CriteriaBuilder builder, Root r) {
+		super();
+		this.predicate = predicate;
+		this.builder = builder;
+		this.r = r;
+	}
+
 }

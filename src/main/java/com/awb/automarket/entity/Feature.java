@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Feature")
 @CustomEntityClassAnnotation(notPresentError = "Optiunea nu exista!")
@@ -48,10 +46,47 @@ public class Feature {
         return Objects.hash(id);
     }
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	@Override
+	public String toString() {
+		return "Feature [id=" + id + ", name=" + name + ", advertList=" + advertList + ", hashCode()=" + hashCode()
+				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
+	}
+
+	public Feature(int id, String name, List<Advert> advertList) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.advertList = advertList;
+	}
+
+	public Feature() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+   
 }

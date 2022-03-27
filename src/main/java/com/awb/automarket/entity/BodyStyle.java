@@ -15,14 +15,54 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "BodyStyle")
 @CustomEntityClassAnnotation(notPresentError = "Caroseria nu exista!")
 public class BodyStyle {
+	
+    public BodyStyle(int id, String name, String description, List<Advert> advertList) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.advertList = advertList;
+	}
 
-    @Id
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
+	}
+
+
+	@Id
     @GeneratedValue
     private int id;
 
@@ -54,11 +94,11 @@ public class BodyStyle {
         return Objects.hash(id);
     }
 
+	@Override
+	public String toString() {
+		return "BodyStyle [id=" + id + ", name=" + name + ", description=" + description + ", advertList=" + advertList
+				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
+				+ "]";
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
 }

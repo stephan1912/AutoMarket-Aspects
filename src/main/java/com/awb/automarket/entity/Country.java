@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Country")
 @CustomEntityClassAnnotation(notPresentError = "Tara nu exista!")
@@ -53,11 +51,43 @@ public class Country {
         return Objects.hash(id);
     }
 
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + ", advertList=" + advertList + ", hashCode()=" + hashCode()
+				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Advert> getAdvertList() {
+		return advertList;
+	}
+
+	public void setAdvertList(List<Advert> advertList) {
+		this.advertList = advertList;
+	}
+
+	public Country(int id, String name, List<Advert> advertList) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.advertList = advertList;
+	}
+
+
+  
 }

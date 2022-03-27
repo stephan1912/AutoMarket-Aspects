@@ -19,8 +19,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Model")
 @CustomEntityClassAnnotation(notPresentError = "Modelul nu exista!")
@@ -103,11 +101,23 @@ public class Model {
         return Objects.hash(id);
     }
 
+	@Override
+	public String toString() {
+		return "Model [id=" + id + ", name=" + name + ", generation=" + generation + ", launchYear=" + launchYear
+				+ ", finalYear=" + finalYear + ", brand=" + brand + ", getName()=" + getName() + ", getGeneration()="
+				+ getGeneration() + ", getLaunchYear()=" + getLaunchYear() + ", getFinalYear()=" + getFinalYear()
+				+ ", getBrand()=" + getBrand() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+		
+  
 }

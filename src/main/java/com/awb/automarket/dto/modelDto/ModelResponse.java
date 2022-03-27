@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 public class ModelResponse {
     public int model_id;
     public String name;
@@ -34,4 +31,61 @@ public class ModelResponse {
                 model.getBrand().getCode()
         );
     }
+
+	public int getModel_id() {
+		return model_id;
+	}
+
+	public void setModel_id(int model_id) {
+		this.model_id = model_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGeneration() {
+		return generation;
+	}
+
+	public void setGeneration(String generation) {
+		this.generation = generation;
+	}
+
+	public int getLaunchYear() {
+		return launchYear;
+	}
+
+	public void setLaunchYear(int launchYear) {
+		this.launchYear = launchYear;
+	}
+
+	public int getFinalYear() {
+		return finalYear;
+	}
+
+	public void setFinalYear(int finalYear) {
+		this.finalYear = finalYear;
+	}
+
+	public BrandDTO getBrand() {
+		return brand;
+	}
+
+	public void setBrand(BrandDTO brand) {
+		this.brand = brand;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+    
 }

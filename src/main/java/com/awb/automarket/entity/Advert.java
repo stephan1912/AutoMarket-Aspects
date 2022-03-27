@@ -24,8 +24,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Advert")
 @CustomEntityClassAnnotation(notPresentError = "Anuntul nu exista!")
@@ -166,7 +164,7 @@ public class Advert {
                 title,
                 description,
                 createdAt,
-                km,
+                km, 
                 year,
                 registered,
                 serviceDocs,
@@ -181,12 +179,236 @@ public class Advert {
         );
     }
 
+	public int getId() {
+		return id;
+	}
 
-    @SneakyThrows
-    @Override
-    public String toString(){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(this);
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public int getKm() {
+		return km;
+	}
+
+	public void setKm(int km) {
+		this.km = km;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public boolean isRegistered() {
+		return registered;
+	}
+
+	public void setRegistered(boolean registered) {
+		this.registered = registered;
+	}
+
+	public boolean isServiceDocs() {
+		return serviceDocs;
+	}
+
+	public void setServiceDocs(boolean serviceDocs) {
+		this.serviceDocs = serviceDocs;
+	}
+
+	public String getVin() {
+		return vin;
+	}
+
+	public void setVin(String vin) {
+		this.vin = vin;
+	}
+
+	public int getHorsePower() {
+		return horsePower;
+	}
+
+	public void setHorsePower(int horsePower) {
+		this.horsePower = horsePower;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getEngineCap() {
+		return engineCap;
+	}
+
+	public void setEngineCap(int engineCap) {
+		this.engineCap = engineCap;
+	}
+
+	public GearboxType getGearboxType() {
+		return gearboxType;
+	}
+
+	public void setGearboxType(GearboxType gearboxType) {
+		this.gearboxType = gearboxType;
+	}
+
+	public Drivetrain getDrivetrain() {
+		return drivetrain;
+	}
+
+	public void setDrivetrain(Drivetrain drivetrain) {
+		this.drivetrain = drivetrain;
+	}
+
+	public Fuel getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(Fuel fuel) {
+		this.fuel = fuel;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public BodyStyle getBodyStyle() {
+		return bodyStyle;
+	}
+
+	public void setBodyStyle(BodyStyle bodyStyle) {
+		this.bodyStyle = bodyStyle;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Images> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Images> images) {
+		this.images = images;
+	}
+
+	public List<Feature> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<Feature> features) {
+		this.features = features;
+	}
+
+	public Advert(int id, String title, String description, Date createdAt, int km, int year, boolean registered,
+			boolean serviceDocs, String vin, int horsePower, int price, int engineCap, GearboxType gearboxType,
+			Drivetrain drivetrain, Fuel fuel, Model model, Country country, BodyStyle bodyStyle, User user,
+			List<Comment> comments, List<Images> images, List<Feature> features) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.createdAt = createdAt;
+		this.km = km;
+		this.year = year;
+		this.registered = registered;
+		this.serviceDocs = serviceDocs;
+		this.vin = vin;
+		this.horsePower = horsePower;
+		this.price = price;
+		this.engineCap = engineCap;
+		this.gearboxType = gearboxType;
+		this.drivetrain = drivetrain;
+		this.fuel = fuel;
+		this.model = model;
+		this.country = country;
+		this.bodyStyle = bodyStyle;
+		this.user = user;
+		this.comments = comments;
+		this.images = images;
+		this.features = features;
+	}
+
+	@Override
+	public String toString() {
+		return "Advert [id=" + id + ", title=" + title + ", description=" + description + ", createdAt=" + createdAt
+				+ ", km=" + km + ", year=" + year + ", registered=" + registered + ", serviceDocs=" + serviceDocs
+				+ ", vin=" + vin + ", horsePower=" + horsePower + ", price=" + price + ", engineCap=" + engineCap
+				+ ", gearboxType=" + gearboxType + ", drivetrain=" + drivetrain + ", fuel=" + fuel + ", model=" + model
+				+ ", country=" + country + ", bodyStyle=" + bodyStyle + ", user=" + user + ", comments=" + comments
+				+ ", images=" + images + ", features=" + features + ", hashCode()=" + hashCode() + ", toDTO()="
+				+ toDTO() + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getDescription()="
+				+ getDescription() + ", getCreatedAt()=" + getCreatedAt() + ", getKm()=" + getKm() + ", getYear()="
+				+ getYear() + ", isRegistered()=" + isRegistered() + ", isServiceDocs()=" + isServiceDocs()
+				+ ", getVin()=" + getVin() + ", getHorsePower()=" + getHorsePower() + ", getPrice()=" + getPrice()
+				+ ", getEngineCap()=" + getEngineCap() + ", getGearboxType()=" + getGearboxType() + ", getDrivetrain()="
+				+ getDrivetrain() + ", getFuel()=" + getFuel() + ", getModel()=" + getModel() + ", getCountry()="
+				+ getCountry() + ", getBodyStyle()=" + getBodyStyle() + ", getUser()=" + getUser() + ", getComments()="
+				+ getComments() + ", getImages()=" + getImages() + ", getFeatures()=" + getFeatures() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
+	}
+
+	public Advert() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+  
 
 }

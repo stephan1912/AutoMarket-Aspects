@@ -5,15 +5,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ErrorResponse {
 
     public int code;
     public int httpCode;
     public String message;
 
-    public static ErrorResponse DuplicateError() {return new ErrorResponse(4009, 409, "Un obiect similar exista deja.");}
+    public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	public int getHttpCode() {
+		return httpCode;
+	}
+	public void setHttpCode(int httpCode) {
+		this.httpCode = httpCode;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public ErrorResponse(int code, int httpCode, String message) {
+		super();
+		this.code = code;
+		this.httpCode = httpCode;
+		this.message = message;
+	}
+	public static ErrorResponse DuplicateError() {return new ErrorResponse(4009, 409, "Un obiect similar exista deja.");}
     public static ErrorResponse NotFound() {return new ErrorResponse(4004, 404, "Resursa cautata nu exista.");}
     public static ErrorResponse UnknownError() {return new ErrorResponse(5000, 500, "A aparut o eroare, va rugam sa reincercati.");}
     public static ErrorResponse NotValid() {return new ErrorResponse(4000, 400, "Cererea nu este valida.");}

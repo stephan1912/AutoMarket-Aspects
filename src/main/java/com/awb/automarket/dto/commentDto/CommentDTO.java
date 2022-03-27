@@ -36,6 +36,54 @@ public class CommentDTO {
         this.advertTitle = comm.getAdvert().getTitle();
     }
 
+	public int getComment_id() {
+		return comment_id;
+	}
+
+	public void setComment_id(int comment_id) {
+		this.comment_id = comment_id;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public String getUserFullName() {
+		return userFullName;
+	}
+
+	public void setUserFullName(String userFullName) {
+		this.userFullName = userFullName;
+	}
+
+	public int getAdvert_id() {
+		return advert_id;
+	}
+
+	public void setAdvert_id(int advert_id) {
+		this.advert_id = advert_id;
+	}
+
+	public String getAdvertTitle() {
+		return advertTitle;
+	}
+
+	public void setAdvertTitle(String advertTitle) {
+		this.advertTitle = advertTitle;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 
 
 }
