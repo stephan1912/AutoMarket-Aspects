@@ -1,2 +1,0 @@
-2021-05-08 21:18:33.391  WARN 21160 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-05-08 21:18:39.912 ERROR 21160 --- [http-nio-9001-exec-1] c.a.a.controller.BodyStyleController     : tasdasdassdasd
