@@ -3,10 +3,6 @@ package com.awb.automarket.dto.advertDto;
 import com.awb.automarket.customvalidation.CustomDtoAnnotation;
 import com.awb.automarket.customvalidation.CustomDtoClassAnnotation;
 import com.awb.automarket.entity.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @CustomDtoClassAnnotation(mappsEntity = Advert.class)
 public class CreateAdvertRequest {
     public int advert_id;

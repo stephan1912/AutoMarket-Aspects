@@ -6,11 +6,8 @@ import com.awb.automarket.entity.Brand;
 import com.awb.automarket.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
-
 import java.util.Date;
 
-@Data
 @CustomDtoClassAnnotation(mappsEntity = User.class)
 public class UserDto {
     public int id;

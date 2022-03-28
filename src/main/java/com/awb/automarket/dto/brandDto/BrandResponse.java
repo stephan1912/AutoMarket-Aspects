@@ -2,19 +2,11 @@ package com.awb.automarket.dto.brandDto;
 
 import com.awb.automarket.dto.modelDto.ModelDTO;
 import com.awb.automarket.entity.Brand;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 public class BrandResponse {
     public int brand_id;
     public String name;

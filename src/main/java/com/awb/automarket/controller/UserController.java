@@ -61,7 +61,8 @@ public class UserController {
     }
 
     @PutMapping(path = "/me")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity UpdateUser(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody UserDto user){
 
         user.password = "temppass";
@@ -108,7 +109,8 @@ public class UserController {
         return userDetailsService.findbyEmail(email).toResponseEntity(logger);
     }
     @GetMapping(path = "{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity GetUserById(@PathVariable("id") Integer id){
         return userDetailsService.findById(id).toResponseEntity(logger);
     }

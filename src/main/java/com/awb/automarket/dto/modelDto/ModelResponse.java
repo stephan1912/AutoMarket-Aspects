@@ -2,12 +2,7 @@ package com.awb.automarket.dto.modelDto;
 
 import com.awb.automarket.dto.brandDto.BrandDTO;
 import com.awb.automarket.entity.Model;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
 public class ModelResponse {
     public int model_id;
     public String name;

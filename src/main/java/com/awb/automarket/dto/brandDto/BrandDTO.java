@@ -6,9 +6,7 @@ import com.awb.automarket.entity.BodyStyle;
 import com.awb.automarket.entity.Brand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-@Data
 @CustomDtoClassAnnotation(mappsEntity = Brand.class)
 public class BrandDTO {
     public int brand_id;

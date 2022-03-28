@@ -4,13 +4,7 @@ import com.awb.automarket.customvalidation.CustomDtoAnnotation;
 import com.awb.automarket.customvalidation.CustomDtoClassAnnotation;
 import com.awb.automarket.entity.Brand;
 import com.awb.automarket.entity.Model;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@ToString
 @CustomDtoClassAnnotation(mappsEntity = Model.class)
 public class CreateModelRequest {
     public int brand_id;

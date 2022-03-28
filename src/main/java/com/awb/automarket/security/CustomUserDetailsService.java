@@ -42,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService, IUserServic
 
     @Override
     public ServiceResponseModel findAll() {
-        return ServiceResponseModel.ok(userRepository.findAll().stream().map(user -> user.toDto()).toList());
+        return ServiceResponseModel.ok(userRepository.findAll().stream().map(user -> user.toDto()));
     }
 
     @Override

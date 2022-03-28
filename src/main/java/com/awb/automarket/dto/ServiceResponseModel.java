@@ -1,14 +1,10 @@
 package com.awb.automarket.dto;
 
 import com.awb.automarket.customvalidation.CustomEntityClassAnnotation;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 
 
-@Data
 public class ServiceResponseModel<T> {
 
     public T responseData;

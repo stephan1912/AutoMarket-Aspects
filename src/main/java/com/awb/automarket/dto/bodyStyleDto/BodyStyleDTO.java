@@ -5,10 +5,7 @@ import com.awb.automarket.customvalidation.CustomDtoClassAnnotation;
 import com.awb.automarket.entity.BodyStyle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-@Data
-@ToString
 @CustomDtoClassAnnotation(mappsEntity = BodyStyle.class)
 public class BodyStyleDTO {
     public int bs_id;

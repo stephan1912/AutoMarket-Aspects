@@ -9,16 +9,10 @@ import com.awb.automarket.entity.Drivetrain;
 import com.awb.automarket.entity.Feature;
 import com.awb.automarket.entity.Fuel;
 import com.awb.automarket.entity.GearboxType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
-@ToString
 public class AdvertDTO {
     public int advert_id;
     public CountryDTO countryDTO;

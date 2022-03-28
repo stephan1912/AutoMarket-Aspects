@@ -2,10 +2,7 @@ package com.awb.automarket.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-
-@Data
 public class AuthRequest {
     private String username;
     private String password;

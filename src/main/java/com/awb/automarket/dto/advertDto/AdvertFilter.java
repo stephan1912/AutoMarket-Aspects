@@ -1,12 +1,7 @@
 package com.awb.automarket.dto.advertDto;
 
 import com.awb.automarket.entity.GearboxType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
 public class AdvertFilter {
     public int brand;
     public int model;

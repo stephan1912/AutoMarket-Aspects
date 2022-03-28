@@ -2,9 +2,7 @@ package com.awb.automarket.dto.userDto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-@Data
 public class PasswordChangeRequest {
     public String newPassword;
     public String currentPassword;

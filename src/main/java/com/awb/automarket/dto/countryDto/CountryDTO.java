@@ -6,10 +6,7 @@ import com.awb.automarket.entity.Brand;
 import com.awb.automarket.entity.Country;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-@Data
-@ToString
 @CustomDtoClassAnnotation(mappsEntity = Country.class)
 public class CountryDTO {
 

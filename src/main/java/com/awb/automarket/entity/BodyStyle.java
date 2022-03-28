@@ -4,17 +4,12 @@ import com.awb.automarket.customvalidation.CustomEntityAnnotation;
 import com.awb.automarket.customvalidation.CustomEntityClassAnnotation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "BodyStyle")
 @CustomEntityClassAnnotation(notPresentError = "Caroseria nu exista!")

@@ -9,16 +9,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "Model")
 @CustomEntityClassAnnotation(notPresentError = "Modelul nu exista!")

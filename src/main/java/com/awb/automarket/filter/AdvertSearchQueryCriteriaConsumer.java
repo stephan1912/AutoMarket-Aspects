@@ -1,16 +1,11 @@
 package com.awb.automarket.filter;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.function.Consumer;
 
-
-@Data
 public class AdvertSearchQueryCriteriaConsumer implements Consumer<SearchCriteria> {
     private Predicate predicate;
     private CriteriaBuilder builder;

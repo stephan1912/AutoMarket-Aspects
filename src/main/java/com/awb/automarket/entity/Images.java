@@ -1,17 +1,12 @@
 package com.awb.automarket.entity;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 /**
  * @author Ionut Valentin
  *
  */
-@Data
 @Entity
 @Table(name = "Images")
 public class Images {

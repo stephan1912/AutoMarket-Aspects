@@ -4,15 +4,7 @@ import com.awb.automarket.customvalidation.CustomDtoAnnotation;
 import com.awb.automarket.customvalidation.CustomDtoClassAnnotation;
 import com.awb.automarket.entity.Brand;
 import com.awb.automarket.entity.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @CustomDtoClassAnnotation(mappsEntity = Comment.class)
 public class CommentDTO {
 

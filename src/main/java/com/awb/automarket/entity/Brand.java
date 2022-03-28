@@ -6,10 +6,6 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "Brand")
 @CustomEntityClassAnnotation(notPresentError = "Brandul nu exista!")

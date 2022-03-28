@@ -5,9 +5,7 @@ import com.awb.automarket.customvalidation.CustomDtoClassAnnotation;
 import com.awb.automarket.entity.Model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.*;
 
-@Data
 @CustomDtoClassAnnotation(mappsEntity = Model.class)
 public class ModelDTO {
     public int model_id;

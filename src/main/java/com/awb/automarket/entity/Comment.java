@@ -4,13 +4,10 @@ import com.awb.automarket.customvalidation.CustomEntityAnnotation;
 import com.awb.automarket.customvalidation.CustomEntityClassAnnotation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import lombok.Data;
-import lombok.SneakyThrows;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "Comment")
 @CustomEntityClassAnnotation(notPresentError = "Comentariul nu exista!")
