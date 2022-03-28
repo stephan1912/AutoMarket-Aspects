@@ -1,7 +1,9 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ServiceResponseModel;
+import com.awb.automarket.dto.featureDto.FeatureDTO;
 import com.awb.automarket.entity.Feature;
 import com.awb.automarket.services.IFeatureService;
 import org.slf4j.Logger;
@@ -26,22 +28,20 @@ public class FeatureController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity CreateFeature(@RequestBody Feature feature){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(feature);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
-        return featureService.save(feature).toResponseEntity(logger);
+    @RequireValidation
+    public ResponseEntity CreateFeature(@RequestBody FeatureDTO feature){
+    	Feature toAdd = new Feature();
+    	toAdd.setName(feature.name);
+        return featureService.save(toAdd).toResponseEntity(logger);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity UpdateFeature(@RequestBody Feature feature){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(feature);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
-        return featureService.update(feature).toResponseEntity(logger);
+    @RequireValidation
+    public ResponseEntity UpdateFeature(@RequestBody FeatureDTO feature){
+    	Feature toAdd = new Feature();
+    	toAdd.setName(feature.name);
+        return featureService.update(toAdd).toResponseEntity(logger);
     }
 
     @DeleteMapping(path = "{id}")

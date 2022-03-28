@@ -1,6 +1,7 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ErrorResponse;
 import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.userDto.PasswordChangeRequest;
@@ -38,11 +39,8 @@ public class UserController {
     private CustomUserDetailsService userDetailsService;
 
     @PostMapping()
+    @RequireValidation
     public ResponseEntity CreateUser(@RequestBody UserDto user){
-
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(user);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
 
         try{
             ServiceResponseModel<UserDto> srm = userDetailsService.save(user);
@@ -61,10 +59,9 @@ public class UserController {
     }
 
     @PutMapping(path = "/me")
-    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    //@Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    public ResponseEntity UpdateUser(@RequestBody UserDto user){
-    	CustomUserDetails userDetails = null;
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    public ResponseEntity UpdateUser(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody UserDto user){
+
         user.password = "temppass";
         ServiceResponseModel validationResult = CustomValidator.ValidateObject(user);
         user.password = "";
@@ -84,7 +81,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/me/password")
-    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity UpdatePassword(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody PasswordChangeRequest request){
         if(request.getNewPassword().length() < 6 || request.getNewPassword().length() > 12){
             return ServiceResponseModel.StringNotValid("Parola", 6, 12).toResponseEntity(logger);
@@ -104,18 +101,18 @@ public class UserController {
     }
 
     @GetMapping(path = "/email/{email}")
-    @Authorized(allowedRoles = {"ROLE_ADMIN"})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity GetUserByEmail(@PathVariable("email") String email){
         return userDetailsService.findbyEmail(email).toResponseEntity(logger);
     }
     @GetMapping(path = "{id}")
     @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    //@Authorized(allowedRoles = {"ROLE_ADMIN"})
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity GetUserById(@PathVariable("id") Integer id){
         return userDetailsService.findById(id).toResponseEntity(logger);
     }
     @DeleteMapping(path = "{id}")
-	@Authorized(allowedRoles = {"ROLE_ADMIN"})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity DeleteById(@PathVariable("id") Integer id){
         return userDetailsService.deleteById(id).toResponseEntity(logger);
     }
@@ -130,12 +127,12 @@ public class UserController {
 
 
     @GetMapping(path = "me")
-    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity GetUser(@AuthenticationPrincipal CustomUserDetails userDetails){
         return userDetailsService.findById(userDetails.getId()).toResponseEntity(logger);
     }
     @DeleteMapping(path = "me")
-    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public ResponseEntity DeleteById(@AuthenticationPrincipal CustomUserDetails userDetails){
         return userDetailsService.deleteById(userDetails.getId()).toResponseEntity(logger);
     }

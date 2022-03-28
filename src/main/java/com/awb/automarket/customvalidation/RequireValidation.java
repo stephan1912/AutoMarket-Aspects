@@ -1,4 +1,4 @@
-package com.awb.automarket.security;
+package com.awb.automarket.customvalidation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD) // can use in method only.
-public @interface Authorized {
+public @interface RequireValidation {
 
-    public String[] allowedRoles();
 }

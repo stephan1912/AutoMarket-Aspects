@@ -1,6 +1,7 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.commentDto.CommentDTO;
 import com.awb.automarket.services.ICommentService;
@@ -22,21 +23,15 @@ public class CommentController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER')")
+    @RequireValidation
     public ResponseEntity CreateComment(@RequestBody CommentDTO commentDTO){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(commentDTO);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return commentService.save(commentDTO).toResponseEntity(logger);
     }
 
     @PutMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @RequireValidation
     public ResponseEntity UpdateComment(@RequestBody CommentDTO commentDTO){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(commentDTO);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return commentService.update(commentDTO).toResponseEntity(logger);
     }
 

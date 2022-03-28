@@ -1,6 +1,7 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.brandDto.BrandDTO;
 import com.awb.automarket.dto.modelDto.ModelDTO;
@@ -23,21 +24,15 @@ public class BrandController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity CreateBrand(@RequestBody BrandDTO brand){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(brand);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return brandService.save(brand).toResponseEntity(logger);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity EditBrand(@RequestBody BrandDTO brand){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(brand);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return brandService.update(brand).toResponseEntity(logger);
     }
 

@@ -1,6 +1,7 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.bodyStyleDto.BodyStyleDTO;
 import com.awb.automarket.services.IBodyStyleService;
@@ -24,21 +25,15 @@ public class BodyStyleController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity CreateBodyStyle(@RequestBody BodyStyleDTO bs){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(bs);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return bodyStyleService.save(bs).toResponseEntity(logger);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity UpdateBodyStyle(@RequestBody BodyStyleDTO bs){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(bs);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return bodyStyleService.update(bs).toResponseEntity(logger);
     }
 

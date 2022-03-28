@@ -1,6 +1,7 @@
 package com.awb.automarket.controller;
 
 import com.awb.automarket.customvalidation.CustomValidator;
+import com.awb.automarket.customvalidation.RequireValidation;
 import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.countryDto.CountryDTO;
 import com.awb.automarket.services.ICountryService;
@@ -22,21 +23,15 @@ public class CountryController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity CreateCountry(@RequestBody CountryDTO country){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(country);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return  countryService.save(country).toResponseEntity(logger);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequireValidation
     public ResponseEntity UpdateCountry(@RequestBody CountryDTO country){
-        ServiceResponseModel validationResult = CustomValidator.ValidateObject(country);
-
-        if(validationResult != null) return validationResult.toResponseEntity(logger);
-
         return  countryService.update(country).toResponseEntity(logger);
     }
 
