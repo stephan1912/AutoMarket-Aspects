@@ -3,6 +3,9 @@ package com.awb.automarket.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
+import org.aspectj.lang.Aspects;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class JwtUtil {
+	
+	@Bean
+	public AuthorizationAspect authAspect() {
+		AuthorizationAspect authAspect = Aspects.aspectOf(AuthorizationAspect.class);
+		authAspect.setJwtUtil(this); // assuming you have a corresponding @Bean method for that bean
+	    return authAspect;
+	}
+	
     private String SECRET_KEY = "autoMarketSecret";
 
     public String extractUsername(String token) {

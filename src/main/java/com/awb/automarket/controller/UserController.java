@@ -62,9 +62,9 @@ public class UserController {
 
     @PutMapping(path = "/me")
     @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-    public ResponseEntity UpdateUser(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody UserDto user){
-
+    //@Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
+    public ResponseEntity UpdateUser(@RequestBody UserDto user){
+    	CustomUserDetails userDetails = null;
         user.password = "temppass";
         ServiceResponseModel validationResult = CustomValidator.ValidateObject(user);
         user.password = "";
@@ -84,7 +84,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/me/password")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity UpdatePassword(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody PasswordChangeRequest request){
         if(request.getNewPassword().length() < 6 || request.getNewPassword().length() > 12){
             return ServiceResponseModel.StringNotValid("Parola", 6, 12).toResponseEntity(logger);
@@ -104,18 +104,18 @@ public class UserController {
     }
 
     @GetMapping(path = "/email/{email}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN"})
     public ResponseEntity GetUserByEmail(@PathVariable("email") String email){
         return userDetailsService.findbyEmail(email).toResponseEntity(logger);
     }
     @GetMapping(path = "{id}")
     @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@Authorized(allowedRoles = {"ROLE_ADMIN"})
     public ResponseEntity GetUserById(@PathVariable("id") Integer id){
         return userDetailsService.findById(id).toResponseEntity(logger);
     }
     @DeleteMapping(path = "{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Authorized(allowedRoles = {"ROLE_ADMIN"})
     public ResponseEntity DeleteById(@PathVariable("id") Integer id){
         return userDetailsService.deleteById(id).toResponseEntity(logger);
     }
@@ -130,12 +130,12 @@ public class UserController {
 
 
     @GetMapping(path = "me")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity GetUser(@AuthenticationPrincipal CustomUserDetails userDetails){
         return userDetailsService.findById(userDetails.getId()).toResponseEntity(logger);
     }
     @DeleteMapping(path = "me")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity DeleteById(@AuthenticationPrincipal CustomUserDetails userDetails){
         return userDetailsService.deleteById(userDetails.getId()).toResponseEntity(logger);
     }

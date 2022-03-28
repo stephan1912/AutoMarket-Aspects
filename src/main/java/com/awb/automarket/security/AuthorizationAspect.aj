@@ -1,5 +1,7 @@
 package com.awb.automarket.security;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,17 +16,32 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-public aspect AuthorizationAspect {
+@Component
+@Aspect
+public class AuthorizationAspect {
 
-    private static CustomUserDetailsService userDetailsService;
-    private static JwtUtil jwtUtil;
+    public void setUserDetailsService(CustomUserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
 
-  
+
+	public void setJwtUtil(JwtUtil jwtUtil) {
+		this.jwtUtil = jwtUtil;
+	}
+
+
+	@Autowired
+	private CustomUserDetailsService userDetailsService;
+	
+	@Autowired
+    private JwtUtil jwtUtil;
+
 
     @Before("@annotation(com.awb.automarket.security.Authorized)")
-    public void before(){
-    	int x = 12 + 90;
-    	/*
+    public void before(JoinPoint joinPoint){
+    	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .currentRequestAttributes())
+                .getRequest();
         if (!(request instanceof HttpServletRequest)) {
             throw
                     new RuntimeException("request should be HttpServletRequesttype");
@@ -50,17 +67,10 @@ public aspect AuthorizationAspect {
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            } else {
+                throw new RuntimeException("auth error..!!!");
             }
-        }
-/*
-        if(authBean.authorize(request.getHeadr("Authorization"))){
-            req.setAttribute(
-                    "userSession",
-                    "session information which cann be acces in controller"
-            );
-        }else {
-            throw new RuntimeException("auth error..!!!");
-        }
-*/
+        } 
+        
     }
 }

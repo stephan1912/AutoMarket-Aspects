@@ -5,7 +5,10 @@ import com.awb.automarket.dto.ServiceResponseModel;
 import com.awb.automarket.dto.userDto.UserDto;
 import com.awb.automarket.entity.User;
 import com.awb.automarket.repository.UserRepository;
+
+import org.aspectj.lang.Aspects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 @Service
 public class CustomUserDetailsService implements UserDetailsService, IUserService {
 
+
+	
     @Autowired
     UserRepository userRepository;
 
