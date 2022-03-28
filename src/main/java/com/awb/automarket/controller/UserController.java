@@ -106,8 +106,7 @@ public class UserController {
         return userDetailsService.findbyEmail(email).toResponseEntity(logger);
     }
     @GetMapping(path = "{id}")
-    @Authorized(allowedRoles = {"ROLE_ADMIN", "ROLE_USER"})
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity GetUserById(@PathVariable("id") Integer id){
         return userDetailsService.findById(id).toResponseEntity(logger);
     }

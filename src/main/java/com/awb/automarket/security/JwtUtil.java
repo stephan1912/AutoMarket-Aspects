@@ -19,13 +19,6 @@ import java.util.stream.Collectors;
 @Service
 public class JwtUtil {
 	
-	@Bean
-	public AuthorizationAspect authAspect() {
-		AuthorizationAspect authAspect = Aspects.aspectOf(AuthorizationAspect.class);
-		authAspect.setJwtUtil(this); // assuming you have a corresponding @Bean method for that bean
-	    return authAspect;
-	}
-	
     private String SECRET_KEY = "autoMarketSecret";
 
     public String extractUsername(String token) {
