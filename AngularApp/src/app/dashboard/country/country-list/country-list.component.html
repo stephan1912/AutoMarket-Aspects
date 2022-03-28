@@ -1,0 +1,38 @@
+<div *ngIf="countryService.countryList && countryService.countryList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterByCountryName" #countryNameFilter class="form-control"
+            placeholder="Filter by Country Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="countryNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nume</th>
+          <th>Modifica</th>
+          <th>Sterge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let country of countryService.countryList; let i = index">
+          <ng-container *ngIf="countryNameFilter.value == null || country.name.toLowerCase().includes(countryNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{country.name}}</td>
+            <td>
+              <button mdbBtn color="info" block="true" size="sm" type="button" (click)="setSelectedCountry(country)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteCountry(country)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

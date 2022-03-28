@@ -1,0 +1,52 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed">
+
+        <a class="logo-wrapper waves-effect text-center">
+            <a [routerLink]="['/dashboard']" class="navbar-brand">Panou de control</a>
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="/dashboard/main" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Anunturi
+            </a>
+            <a routerLink="/dashboard/account" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Contul meu
+            </a>
+
+            <div *ngIf="isAdmin">
+                <a routerLink="/dashboard/brand" routerLinkActive="active"
+                    class="list-group-item list-group-item-action waves-effect">
+                    <mdb-icon fas icon="car" class="mr-3"></mdb-icon>Branduri
+                </a>
+                <a routerLink="/dashboard/bodystyle" routerLinkActive="active"
+                    class="list-group-item list-group-item-action waves-effect">
+                    <mdb-icon fas icon="car-side" class="mr-3"></mdb-icon>Caroserie
+                </a>
+                <a routerLink="/dashboard/feature" routerLinkActive="active"
+                    class="list-group-item list-group-item-action waves-effect">
+                    <mdb-icon fas icon="swatchbook" class="mr-3"></mdb-icon>0ptiuni
+                </a>
+                <a routerLink="/dashboard/country" routerLinkActive="active"
+                    class="list-group-item list-group-item-action waves-effect">
+                    <mdb-icon fas icon="globe" class="mr-3"></mdb-icon>Tari
+                </a>
+
+            </div>
+
+            <a (click)="SignOut()" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="sign-out-alt" class="mr-3"></mdb-icon>Deconectare
+            </a>
+
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+</header>
+<!--Main Navigation-->

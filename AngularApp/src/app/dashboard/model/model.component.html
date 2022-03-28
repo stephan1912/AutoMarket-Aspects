@@ -1,0 +1,11 @@
+<app-navbar [Route]="this.brandService.selectedBrand != null ? this.brandService.selectedBrand.name + ' models:' : 'No brand selected'" [BackButtonValue]="'/dashboard/brand'"></app-navbar>
+
+<div class="row" *ngIf="this.brandService.selectedBrand != null">
+    
+    <div class="col-md-3">
+        <app-model-create></app-model-create>
+    </div>
+    <div class="col-md-9">
+        <app-model-list></app-model-list>
+    </div>
+</div>

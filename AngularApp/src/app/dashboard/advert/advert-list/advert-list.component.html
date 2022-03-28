@@ -1,0 +1,44 @@
+
+<div class="row" *ngIf="userService.IsUserAdmin()" style="margin-bottom: 50px;">
+    <div class="col">
+        Sorteaza dupa data de creare a anuntului:
+    </div>
+    <div class="col">
+        <select class="form-control" (change)="sortTypeChange($event)" id="sortSelect">
+            <option value="asc">Ascendent</option>
+            <option value="desc">Descendent</option>
+        </select>
+    </div>
+</div>
+
+<div *ngFor="let advert of userAdverts; let i = index" class="row">
+    <div (click)="goToAdvert(advert)" style="width: 100%; height: 200px; margin-bottom: 50px;">
+        <app-stat-card [Title]="advert.title" 
+        [Picture]="advert.pictures?.length > 0 ? advert.pictures[0] : 'notfound.png'" 
+        [Price]="advert.price" 
+        [Year]="advert.year" 
+        [Km]="advert.km" 
+        [EngineCap]="advert.engineCap"
+        [Advert]="advert"
+        [ShowDelete]="true"
+        [AdvertList]="userAdverts"
+        [Fuel]="advert.fuel"></app-stat-card>
+    </div>
+</div>
+<div class="row" style="margin: 0px 150px">
+    <div class="col text-center">
+      <nav>
+        <ul class="pagination">
+          <li class="page-item" *ngIf="currentPage > 1">
+            <a class="page-link" aria-disabled="true" (click)="setPage(currentPage - 1)" mdbWavesEffect>Inapoi</a>
+          </li>
+          <li class="page-item" *ngFor="let page of getArray(totalPages)" [class.active]="page == currentPage">
+            <a class="page-link" (click)="setPage(page)" mdbWavesEffect>{{page}}</a>
+          </li>
+          <li class="page-item" *ngIf="currentPage < totalPages">
+            <a class="page-link" (click)="setPage(currentPage + 1)" mdbWavesEffect>Inainte</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>

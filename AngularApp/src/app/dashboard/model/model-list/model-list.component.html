@@ -1,0 +1,44 @@
+<div *ngIf="modelService.modelList && modelService.modelList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterBymodelName" #modelNameFilter class="form-control"
+            placeholder="Filter by model Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="modelNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nume</th>
+          <th>Generatie</th>
+          <th>An Lansare</th>
+          <th>An final</th>
+          <th>Modifica</th>
+          <th>Sterge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let model of modelService.modelList; let i = index">
+          <ng-container *ngIf="modelNameFilter.value == null || model.name.toLowerCase().includes(modelNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{model.name}}</td>
+            <td>{{model.generation}}</td>
+            <td>{{model.launchYear}}</td>
+            <td>{{model.finalYear}}</td>
+            <td>
+              <button mdbBtn color="info" block="true" size="sm" type="button" (click)="setSelectedModel(model)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteModel(model)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

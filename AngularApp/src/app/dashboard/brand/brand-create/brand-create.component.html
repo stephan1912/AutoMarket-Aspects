@@ -1,0 +1,27 @@
+<form class="text-center" [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <!-- First name -->
+        <label for="brandName">Nume brand:</label>
+        <input type="text" formControlName="brandName" id="brandName" class="form-control"
+            placeholder="Name">
+        <div *ngIf="checkInput(f.brandName)">
+            <small class="text-danger" *ngIf="f.brandName.errors.required">Numele este obligatoriu</small>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <!-- Last name -->
+        <label for="brandCode">Cod brand:</label>
+        <input type="text" formControlName="brandCode" id="brandCode" class="form-control"
+            placeholder="Code">
+        <div *ngIf="checkInput(f.brandCode)">
+            <small class="text-danger" *ngIf="f.brandCode.errors.required">Codul este obligatoriu</small>
+        </div>
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="brandService.selectedBrand != null">Actualizeaza</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="brandService.selectedBrand == null">Creeaza</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms(true)">Sterge</button>
+
+</form>

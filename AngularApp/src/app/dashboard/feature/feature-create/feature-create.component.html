@@ -1,0 +1,18 @@
+<form class="text-center" [formGroup]="featureForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <!-- First name -->
+        <label for="featureName">Nume optiune:</label>
+        <input type="text" formControlName="featureName" id="featureName" class="form-control"
+            placeholder="Feature">
+        <div *ngIf="checkInput(f.featureName)">
+            <small class="text-danger" *ngIf="f.featureName.errors.required">Numele este obligatoriu</small>
+        </div>
+
+    </div>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="featureService.selectedFeature != null">Actualizeaza</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" *ngIf="featureService.selectedFeature == null">Creeaza</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms(true)">Sterge</button>
+
+</form>

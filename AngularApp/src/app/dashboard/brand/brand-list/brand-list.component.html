@@ -1,0 +1,44 @@
+<div *ngIf="brandService.brandList && brandService.brandList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterByBrandName" #brandNameFilter class="form-control"
+            placeholder="Filter by Brand Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="brandNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nume brand</th>
+          <th>Cod brand</th>
+          <th>Modele</th>
+          <th>Modifica</th>
+          <th>Sterge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let brand of brandService.brandList; let i = index">
+          <ng-container *ngIf="brandNameFilter.value == null || brand.name.toLowerCase().includes(brandNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{brand.name}}</td>
+            <td>{{brand.code}}</td>
+            <td>
+              <button mdbBtn color="info" block="true" size="sm" type="button" (click)="seeModels(brand)"><mdb-icon fas icon="eye"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="info" block="true" size="sm" type="button" (click)="setSelectedBrand(brand)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteBrand(brand)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
