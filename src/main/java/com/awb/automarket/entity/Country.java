@@ -83,6 +83,12 @@ public class Country {
 		this.advertList = advertList;
 	}
 
+	public Country() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
   
 }

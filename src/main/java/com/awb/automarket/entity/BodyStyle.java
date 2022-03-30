@@ -96,4 +96,11 @@ public class BodyStyle {
 				+ "]";
 	}
 
+
+	public BodyStyle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 }

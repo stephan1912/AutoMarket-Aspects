@@ -110,6 +110,11 @@ public class Brand {
 				+ ", hashCode()=" + hashCode() + ", getId()=" + getId() + ", getClass()=" + getClass() + ", toString()="
 				+ super.toString() + "]";
 	}
+
+	public Brand() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
     
 
     

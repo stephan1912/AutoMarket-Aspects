@@ -113,6 +113,21 @@ public class Model {
 		this.id = id;
 	}
 
+	public Model() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Model(int id, String name, String generation, int launchYear, int finalYear, Brand brand) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.generation = generation;
+		this.launchYear = launchYear;
+		this.finalYear = finalYear;
+		this.brand = brand;
+	}
+
 		
   
 }
